@@ -7,7 +7,26 @@
 </head>
 <body>
 <h1>Listado de Proveedores</h1>
-    <?= $title?>
-    <?= $dato?>
+    <table width="50%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre del proveedor</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach($data as $row) { ?>
+        <tr>
+            <td><?=$row["id"]?></td>
+            <td><?=$row["name"]?></td>
+            <td><?=$row["address"]?></td>
+            <td><?=$row["phone"]?></td>
+        </tr>
+    <?php } ?>
+        </tbody>
+    </table>
+    
 </body>
 </html>
