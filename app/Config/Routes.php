@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Models\Product;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -32,8 +34,11 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 
 $routes->get('/products', 'ProductsController::index');
+$routes->get('/products/new', 'ProductsController::create');
+$routes->post('/products', 'ProductsController::save');
 
 $routes->get('/providers', 'ProvidersController::index');
+$routes->get('/providers/new', 'ProvidersController::create');
 
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
