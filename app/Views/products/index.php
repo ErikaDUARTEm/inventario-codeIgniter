@@ -24,7 +24,7 @@
                             <!--aqui va el boton -->
                         </div>
                         <div class="card-body">
-                        <table width="100%">
+                        <table width="100%" class="table table-bor">
                         <thead>
                             <tr>
                                 <th>Codigo</th>
