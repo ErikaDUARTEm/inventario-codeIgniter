@@ -20,9 +20,11 @@
 
                     </div>
                     <div class="card shadow">
-                        <div class="card-header">
-                            <h6 class="m-0 font-weight-bold text-primary"><?= $title ?></h6>
+                    <div class="card-header d-sm-flex justify-content-between mb-4">
+                            <h6 class="m-0 font-weight-bold text-primary"><?= $title?></h6>
                             <!--aqui va el boton -->
+                            <a href="<?=base_url("/providers/new")?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Nuevo proveedor</a>
                         </div>
                         <div class="card-body">
                             <table width="100%" class="table table-bor">

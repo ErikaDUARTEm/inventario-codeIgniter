@@ -37,7 +37,7 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="<?=base_url("/products")?>">Listado de productos</a>
-            <a class="collapse-item" href="">Nuevo producto</a>
+            <a class="collapse-item" href="<?=base_url("/products/new")?>">Nuevo producto</a>
         </div>
     </div>
 </li>
@@ -54,7 +54,7 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="<?=base_url("/providers")?>">Lista de proveedores</a>
-            <a class="collapse-item" href="utilities-border.html">Nuevo proveedor</a>
+            <a class="collapse-item" href="<?=base_url("/providers/new")?>">Nuevo proveedor</a>
         </div>
     </div>
 </li>

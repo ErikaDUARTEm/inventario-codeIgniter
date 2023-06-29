@@ -19,5 +19,16 @@
         public function create(){
             return view("products/new", ['title'=> "Nuevo Producto"]);
         }
-
+        public function save(){
+           $data= [
+            "code" => $this->request->getPost("code"),
+            "title" => $this->request->getPost("title"),
+            "description" => $this->request->getPost("description"),
+            "price" => $this->request->getPost("price"),
+            "quantity" => $this->request->getPost("quantity")
+           
+           ];
+            $productos = new Product();
+            $productos->Insert($data);
+        }
     }

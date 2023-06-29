@@ -9,7 +9,7 @@
             $providers = new Provider();
             $data = $providers->findAll();
           
-            return view("providers",
+            return view("providers/index",
             [
                 "title"=> "Listado de Proveedores",
                 "data" => $data,
@@ -17,4 +17,8 @@
             ]
         );
         }
+        public function create(){
+            return view("providers/new", ["title"=> "Nuevo proveedor"]);
+        }
+
     }
