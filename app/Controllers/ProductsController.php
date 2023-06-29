@@ -8,13 +8,16 @@
             $products = new Product();
             $data = $products->findAll();
         
-            return view("products",
+            return view("products/index",
             [
                 "title"=> "Listado de Productos",
                 "products" => $data
                 
             ]
         );
+        }
+        public function create(){
+            return view("products/new", ['title'=> "Nuevo Producto"]);
         }
 
     }

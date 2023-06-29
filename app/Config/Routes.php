@@ -32,6 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 
 $routes->get('/products', 'ProductsController::index');
+$routes->get('/products/new', 'ProductsController::new');
 
 $routes->get('/providers', 'ProvidersController::index');
 
