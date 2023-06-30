@@ -20,15 +20,70 @@
             return view("products/new", ['title'=> "Nuevo Producto"]);
         }
         public function save(){
-           $data= [
-            "code" => $this->request->getPost("code"),
-            "title" => $this->request->getPost("title"),
-            "description" => $this->request->getPost("description"),
-            "price" => $this->request->getPost("price"),
-            "quantity" => $this->request->getPost("quantity")
-           
-           ];
-            $productos = new Product();
-            $productos->Insert($data);
+    
+             $validation = $this->validate([
+                "code" => [
+                    "rules"=>"required|min_length[10]|max_length[20]",
+                    "errors" => [
+                        "required" => "El campo código es obligatorio",
+                        "min_length" => "El código debe tener minimo 10 caracteres",
+                        "max_length" => "El código no puede ser mayor a 20 caracteres"
+                        ]     
+                    ],
+                "title" => [
+                        "rules"=>"required|min_length[8]|max_length[255]",
+                        "errors" => [
+                            "required" => "El campo titulo es obligatorio",
+                            "min_length" => "El titulo debe tener minimo 8 caracteres",
+                            "max_length" => "El titulo no puede ser mayor a 255 caracteres"
+                            ]     
+                        ],
+                "description" => [
+                        "rules"=>"required|min_length[20]",
+                        "errors" => [
+                             "required" => "La descripción es obligatoria",
+                             "min_length" => "La descripción debe tener minimo 20 caracteres",
+                            
+                            ]     
+                        ],
+                "price" => [
+                        "rules"=>"required|numeric",
+                        "errors" => [
+                                "required" => "El precio es obligatorio",
+                                "numeric" => "El precio debe ser numeros",
+                                
+                                ]     
+                            ],
+                "quantity" => [
+                        "rules"=>"required|numeric",
+                        "errors" => [
+                                    "required" => "La Existencia es obligatoria",
+                                    "numeric" => "La existencia debe ser numeros",
+                                        
+                                    ]     
+                                    ],
+                
+            ]);
+            if(!$validation){
+                return redirect()->back()->with("errors", $this->validator->getErrors())->withInput();
+            }
+            try{
+                $data= [
+                    "code" => $this->request->getPost("code"),
+                    "title" => $this->request->getPost("title"),
+                    "description" => $this->request->getPost("description"),
+                    "price" => $this->request->getPost("price"),
+                    "quantity" => $this->request->getPost("quantity")
+                   
+                   ];
+                    $productos = new Product();
+                    $productos->insert($data);
+        
+                    return redirect()->to(base_url("/products"))->with("success", "Guardado exitosamente");
+            }catch(\Throwable $error){
+                return redirect()->back()->with("error", $error->getMessage())->withInput();
+            }
+            
+          
         }
     }

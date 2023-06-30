@@ -26,6 +26,11 @@
                                 class="fas fa-download fa-sm text-white-50"></i> Nuevo Producto</a>
                         </div>
                         <div class="card-body">
+                        <?php if(session("success")){?>
+                            <div class="alert alert-success" role="alert">
+                            <?= session("success")?>
+                            </div>
+                            <?php } ?>
                         <table width="100%" class="table table-bor">
                         <thead>
                             <tr>
@@ -34,6 +39,9 @@
                                 <th>Descripcion</th>
                                 <th>Precio</th>
                                 <th>Existencia</th>
+                                <th></th>
+                                <th></th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +52,8 @@
                                     <td><?= $row["description"] ?></td>
                                     <td><?= $row["price"] ?></td>
                                     <td><?= $row["quantity"] ?></td>
+                                    <td><button class="btn btn-primary">Editar</button></td>
+                                    <td><button class="btn btn-danger">Eliminar</button></td>
 
                                 </tr>
                             <?php } ?>

@@ -21,23 +21,36 @@
                     <div class="card shadow">
                         <div class="card-header">
                             <h6 class="m-0 font-weight-bold text-primary"><?= $title ?></h6>
-                            
                         </div>
+                        <?php if(session("error")){?>
+                                <div class="alert alert-danger" role="alert">
+                                <?= session("error")?>
+                                </div>
+                            </div>
+                            <?php } ?>
+                            <?php if(session("errors")){?>
+                                <div class="alert alert-danger" role="alert">
+                                <?= print_r(session("errors"))?>
+                                </div>
+                            </div>
+                            <?php } ?>
                         <div class="card-body">
-                            <form action="">
+                            <form action="<?= base_url("/providers")?>" method="POST">
                                 <div class="form-group">
                                     <label for="">Nombre del proveedor</label>
-                                    <input type="text" class="form-control form-control-user" name="name" placeholder="Ingrese el código del producto">
+                                    <input type="text" class="form-control form-control-user" name="name" placeholder="Ingrese el nombre del proveedor" value="<?=old("name")?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Dirección</label>
-                                    <input type="text" class="form-control form-control-user" name="direction" placeholder="Ingrese el código del producto">
+                                    <input type="text" class="form-control form-control-user" name="address" placeholder="Ingrese la dirección" value="<?=old("address")?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Teléfono</label>
-                                    <input type="number" class="form-control form-control-user" name="phone" placeholder="Ingrese el código del producto">
+                                    <input type="text" class="form-control form-control-user" name="phone" placeholder="Ingrese el teléfono" value="<?=old("phone")?>">
                                 </div>
-
+                                <div class="text-right">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
                             </form>
                         </div>
                     </div>

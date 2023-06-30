@@ -23,17 +23,25 @@
                     <div class="card-header d-sm-flex justify-content-between mb-4">
                             <h6 class="m-0 font-weight-bold text-primary"><?= $title?></h6>
                             <!--aqui va el boton -->
+                           
                             <a href="<?=base_url("/providers/new")?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Nuevo proveedor</a>
                         </div>
                         <div class="card-body">
+                            <?php if(session("success")){?>
+                            <div class="alert alert-success" role="alert">
+                            <?= session("success")?>
+                            </div>
+                            <?php } ?>
                             <table width="100%" class="table table-bor">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
                                         <th>Nombre del proveedor</th>
-                                        <th>Direccion</th>
-                                        <th>Telefono</th>
+                                        <th>Dirección</th>
+                                        <th>Teléfono</th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,6 +51,9 @@
                                             <td><?= $row["name"] ?></td>
                                             <td><?= $row["address"] ?></td>
                                             <td><?= $row["phone"] ?></td>
+                                            <td><button class="btn btn-primary">Editar</button></td>
+                                            <td><button class="btn btn-danger">Eliminar</button></td>
+
                                         </tr>
                                     <?php } ?>
                                 </tbody>
