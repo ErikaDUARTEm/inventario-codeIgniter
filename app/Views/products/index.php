@@ -12,11 +12,9 @@
                     <?= $this->include("layout/partials/topbar") ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800"><?=$title?></h1>
-                        
                     </div>
                     <div class="card shadow">
                         <div class="card-header d-sm-flex justify-content-between mb-4">
@@ -31,7 +29,12 @@
                             <?= session("success")?>
                             </div>
                             <?php } ?>
-                        <table width="100%" class="table table-bor">
+                            <?php if(session("warning")){?>
+                            <div class="alert alert-warning" role="alert">
+                            <?= session("warning")?>
+                            </div>
+                            <?php } ?>
+                        <table width="80%" class="table table-border">
                         <thead>
                             <tr>
                                 <th>Codigo</th>
@@ -41,7 +44,6 @@
                                 <th>Existencia</th>
                                 <th></th>
                                 <th></th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -52,9 +54,15 @@
                                     <td><?= $row["description"] ?></td>
                                     <td><?= $row["price"] ?></td>
                                     <td><?= $row["quantity"] ?></td>
-                                    <td><button class="btn btn-primary">Editar</button></td>
-                                    <td><button class="btn btn-danger">Eliminar</button></td>
-
+                                    <td>
+                                        <a href="<?= base_url("/products/edit/{$row["id"]}")?>" class="btn btn-primary">Editar</a>
+                                    </td>
+                                    <td>
+                                        <form action="<?= base_url("/products/{$row["id"]}")?>" method="POST">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>

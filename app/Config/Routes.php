@@ -33,9 +33,12 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-$routes->get('/products', 'ProductsController::index');
-$routes->get('/products/new', 'ProductsController::create');
-$routes->post('/products', 'ProductsController::save');
+$routes->get('/products', 'ProductsController::index'); // lista productos
+$routes->get('/products/new', 'ProductsController::create'); // vista nuevo
+$routes->post('/products', 'ProductsController::save'); // guardar productos
+$routes->get('/products/edit/(:num)', 'ProductsController::edit/$1');
+$routes->put("/products", "ProductsController::update");
+$routes->delete("/products/(:num)", "ProductsController::delete/$1");
 
 $routes->get('/providers', 'ProvidersController::index');
 $routes->get('/providers/new', 'ProvidersController::create');
@@ -48,6 +51,8 @@ $routes->post('/employees', 'EmployeesController::save');
 $routes->get('/customers', 'CustomersController::index');
 $routes->get('/customers/new', 'CustomersController::create');
 $routes->post('/customers', 'CustomersController::save');
+
+
 
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
