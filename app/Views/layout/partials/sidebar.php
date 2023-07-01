@@ -29,7 +29,7 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+    <a class="nav-link collapsed" href="/products" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
         <span>Productos</span>
@@ -45,7 +45,7 @@
 <hr class="sidebar-divider d-none d-md-block">
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+    <a class="nav-link collapsed" href="/providers" data-toggle="collapse" data-target="#collapseUtilities"
         aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Proveedores</span>
@@ -62,7 +62,7 @@
 <hr class="sidebar-divider d-none d-md-block">
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+    <a class="nav-link collapsed" href="/employees" data-toggle="collapse" data-target="#collapseUtilities"
         aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Empleados</span>
@@ -72,6 +72,24 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="<?=base_url("/employees")?>">Lista de empleados</a>
             <a class="collapse-item" href="<?=base_url("/employees/new")?>">Nuevo empleado</a>
+        </div>
+    </div>
+</li>
+
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
+<!-- Nav Item - Utilities Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="/customers" data-toggle="collapse" data-target="#collapseUtilities"
+        aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Clientes</span>
+    </a>
+    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="<?=base_url("/customers")?>">Lista de clientes</a>
+            <a class="collapse-item" href="<?=base_url("/customers/new")?>">Nuevo cliente</a>
         </div>
     </div>
 </li>

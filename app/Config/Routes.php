@@ -45,6 +45,10 @@ $routes->get('/employees', 'EmployeesController::index');
 $routes->get('/employees/new', 'EmployeesController::create');
 $routes->post('/employees', 'EmployeesController::save');
 
+$routes->get('/customers', 'CustomersController::index');
+$routes->get('/customers/new', 'CustomersController::create');
+$routes->post('/customers', 'CustomersController::save');
+
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
