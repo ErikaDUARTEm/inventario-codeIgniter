@@ -157,7 +157,7 @@
                     $productos = new Product();
                     $productos->update($id, $data);
         
-                    return redirect()->to(base_url("/products"))->with("success", "Guardado exitosamente");
+                    return redirect()->to(base_url("/products"))->with("success", "Editado exitosamente");
             }catch(\Throwable $error){
                 return redirect()->back()->with("error", $error->getMessage())->withInput();
             }

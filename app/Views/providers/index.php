@@ -51,8 +51,15 @@
                                             <td><?= $row["name"] ?></td>
                                             <td><?= $row["address"] ?></td>
                                             <td><?= $row["phone"] ?></td>
-                                            <td><button class="btn btn-primary">Editar</button></td>
-                                            <td><button class="btn btn-danger">Eliminar</button></td>
+                                            <td>
+                                                <a href="<?= base_url("/providers/edit/{$row["id"]}")?>" class="btn btn-primary">Editar</a>
+                                            </td>
+                                            <td>
+                                                <form action="<?= base_url("/providers/{$row["id"]}")?>" method="POST">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                </form>
+                                            </td>
 
                                         </tr>
                                     <?php } ?>

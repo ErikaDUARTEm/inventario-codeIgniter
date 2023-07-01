@@ -49,14 +49,25 @@ $routes->delete("/products/(:num)", "ProductsController::delete/$1");
 $routes->get('/providers', 'ProvidersController::index');
 $routes->get('/providers/new', 'ProvidersController::create');
 $routes->post('/providers', 'ProvidersController::save');
+$routes->get('/providers/edit/(:num)', 'ProvidersController::edit/$1');
+$routes->put("/providers", "ProvidersController::update");
+$routes->delete("/providers/(:num)", "ProvidersController::delete/$1");
 
 $routes->get('/employees', 'EmployeesController::index');
 $routes->get('/employees/new', 'EmployeesController::create');
 $routes->post('/employees', 'EmployeesController::save');
+$routes->get('/employees/edit/(:num)', 'EmployeesController::edit/$1');
+$routes->put("/employees", "EmployeesController::update");
+$routes->delete("/employees/(:num)", "EmployeesController::delete/$1");
+
 
 $routes->get('/customers', 'CustomersController::index');
 $routes->get('/customers/new', 'CustomersController::create');
 $routes->post('/customers', 'CustomersController::save');
+$routes->get('/customers/edit/(:num)', 'CustomersController::edit/$1');
+$routes->put("/customers", "CustomersController::update");
+$routes->delete("/customers/(:num)", "CustomersController::delete/$1");
+
 
 
 
