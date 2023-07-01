@@ -41,6 +41,10 @@ $routes->get('/providers', 'ProvidersController::index');
 $routes->get('/providers/new', 'ProvidersController::create');
 $routes->post('/providers', 'ProvidersController::save');
 
+$routes->get('/employees', 'EmployeesController::index');
+$routes->get('/employees/new', 'EmployeesController::create');
+$routes->post('/employees', 'EmployeesController::save');
+
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
