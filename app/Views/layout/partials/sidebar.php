@@ -62,12 +62,12 @@
 <hr class="sidebar-divider d-none d-md-block">
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="/employees" data-toggle="collapse" data-target="#collapseUtilities"
-        aria-expanded="true" aria-controls="collapseUtilities">
+    <a class="nav-link collapsed" href="/employees" data-toggle="collapse" data-target="#collapseThree"
+        aria-expanded="true" aria-controls="collapseThree">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Empleados</span>
     </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+    <div id="collapseThree" class="collapse" aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="<?=base_url("/employees")?>">Lista de empleados</a>
@@ -80,12 +80,12 @@
 <hr class="sidebar-divider d-none d-md-block">
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="/customers" data-toggle="collapse" data-target="#collapseUtilities"
-        aria-expanded="true" aria-controls="collapseUtilities">
+    <a class="nav-link collapsed" href="/customers" data-toggle="collapse" data-target="#collapseFour"
+        aria-expanded="true" aria-controls="collapseFour">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Clientes</span>
     </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+    <div id="collapseFour" class="collapse" aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="<?=base_url("/customers")?>">Lista de clientes</a>
