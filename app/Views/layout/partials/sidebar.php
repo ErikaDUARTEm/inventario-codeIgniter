@@ -58,6 +58,23 @@
         </div>
     </div>
 </li>
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block">
+<!-- Nav Item - Utilities Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+        aria-expanded="true" aria-controls="collapseUtilities">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Empleados</span>
+    </a>
+    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="<?=base_url("/employees")?>">Lista de empleados</a>
+            <a class="collapse-item" href="<?=base_url("/employees/new")?>">Nuevo empleado</a>
+        </div>
+    </div>
+</li>
 
 <!-- Divider -->
 <hr class="sidebar-divider">
