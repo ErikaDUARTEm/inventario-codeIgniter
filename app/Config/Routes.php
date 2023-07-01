@@ -31,7 +31,13 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+// $routes->get('/', 'Home::index');
+$routes->get('/', 'AuthController::index');
+$routes->post('/auth', 'AuthController::auth');
+
+$routes->get('/tablero', 'TableroController::index');
+$routes->post('/tablero', 'TableroController::tablero');
+
 
 $routes->get('/products', 'ProductsController::index'); // lista productos
 $routes->get('/products/new', 'ProductsController::create'); // vista nuevo
