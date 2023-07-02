@@ -57,7 +57,7 @@
                                             <td>
                                                 <form action="<?= base_url("/employees/{$row["id"]}")?>" method="POST">
                                                     <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    <button type="submit" onclick="javascript:return confirm('¿Quieres eliminar a este empleado?')"  class="btn btn-danger">Eliminar</button>
                                                 </form>
                                             </td>
 
