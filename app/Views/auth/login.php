@@ -19,15 +19,20 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Bienvenid@!</h1>
                             </div>
+                            <?php if(session("error")){?>
+                            <div class="alert alert-warning" role="alert">
+                            <?= session("error")?>
+                            </div>
+                            <?php } ?>
                             <form class="user" action="<?=base_url("/tablero")?>" method="POST">
-                                <div class="form-group">
+                            <div class="form-group">
                                     <input type="email" class="form-control form-control-user"
-                                        id="exampleInputEmail" aria-describedby="emailHelp"
+                                        id="exampleInputEmail" name="email" aria-describedby="emailHelp"
                                         placeholder="Ingrese su correo electronico...">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" placeholder="Ingrese la contraseña">
+                                        id="exampleInputPassword" name="password" placeholder="Ingrese la contraseña">
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">

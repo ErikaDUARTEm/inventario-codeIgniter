@@ -43,12 +43,8 @@
                                     <input type="text" class="form-control form-control-user" name="name" placeholder="Ingrese el nombre del empleado" value="<?=$employee["name"]?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Dirección</label>
-                                    <input type="text" class="form-control form-control-user" name="address" placeholder="Ingrese la dirección" value="<?=$employee["address"]?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Teléfono</label>
-                                    <input type="text" class="form-control form-control-user" name="phone" placeholder="Ingrese el teléfono" value="<?=$employee["phone"]?>">
+                                    <label for="">Email</label>
+                                    <input type="text" class="form-control form-control-user" name="email" placeholder="Ingrese el email" value="<?=$employee["email"]?>">
                                 </div>
                                 <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Guardar</button>

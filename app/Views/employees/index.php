@@ -38,8 +38,8 @@
                                     <tr>
                                         <th>Id</th>
                                         <th>Nombre del empleado</th>
-                                        <th>Dirección</th>
-                                        <th>Teléfono</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
@@ -49,15 +49,14 @@
                                         <tr>
                                             <td><?= $row["id"] ?></td>
                                             <td><?= $row["name"] ?></td>
-                                            <td><?= $row["address"] ?></td>
-                                            <td><?= $row["phone"] ?></td>
+                                            <td><?= $row["email"] ?></td>
                                             <td>
                                                 <a href="<?= base_url("/employees/edit/{$row["id"]}")?>" class="btn btn-primary">Editar</a>
                                             </td>
                                             <td>
                                                 <form action="<?= base_url("/employees/{$row["id"]}")?>" method="POST">
                                                     <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    <button type="submit" onclick="javascript:return confirm('¿Quieres eliminar a este empleado?')"  class="btn btn-danger">Eliminar</button>
                                                 </form>
                                             </td>
 

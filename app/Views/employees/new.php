@@ -30,10 +30,13 @@
                             <?php } ?>
                             <?php if(session("errors")){?>
                                 <div class="alert alert-danger" role="alert">
-                                <?= print_r(session("errors"))?>
+                                <?php foreach(session("errors") as $errors){?>
+                                    <li><?=$errors?></li>
+                                <?php } ?>
                                 </div>
+                                <?php } ?>
                             </div>
-                            <?php } ?>
+                            
                         <div class="card-body">
                             <form action="<?= base_url("/employees")?>" method="POST">
                                 <div class="form-group">
@@ -41,12 +44,8 @@
                                     <input type="text" class="form-control form-control-user" name="name" placeholder="Ingrese el nombre del empleado" value="<?=old("name")?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Dirección</label>
-                                    <input type="text" class="form-control form-control-user" name="address" placeholder="Ingrese la dirección" value="<?=old("address")?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Teléfono</label>
-                                    <input type="text" class="form-control form-control-user" name="phone" placeholder="Ingrese el teléfono" value="<?=old("phone")?>">
+                                    <label for="">Email</label>
+                                    <input type="text" class="form-control form-control-user" name="email" placeholder="Ingrese el email" value="<?=old("email")?>">
                                 </div>
                                 <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
