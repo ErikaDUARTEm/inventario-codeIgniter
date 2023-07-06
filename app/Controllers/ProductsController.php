@@ -168,7 +168,7 @@
                 $producto->delete($id);
                 return redirect()->to(base_url("/products"))->with("success", "El producto fue eliminado exitosamente");
             }catch(\Throwable $error){
-                return redirect()->back()->with("error", $error->getMessage());
+                return redirect()->back()->with("error", $error->getMessage())->withInput();
             }
            
         }

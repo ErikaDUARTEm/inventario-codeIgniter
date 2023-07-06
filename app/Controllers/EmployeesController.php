@@ -31,21 +31,13 @@
                     "max_length" => "El nombre no puede ser mayor a 30 caracteres"
                 ]
             ],
-            "address" => [
-                "rules" => "required|min_length[10]",
+            "email" => [
+                "rules" => "required|max_length[255]",
                 "errors" => [
-                    "required" => "El campo dirección es obligatorio",
-                    "min_length" => "La dirección debe tener minimo 10 caracteres"
+                    "required" => "El campo Email es obligatorio",
+                    "max_length" => "La dirección debe tener máximo 255 caracteres"
                 ]
             ],
-            "phone" => [
-                "rules" => "required|min_length[10]",
-                "errors" => [
-                    "required" => "El teléfono es obligatorio",
-                    "min_length" => "El teléfono debe tener minimo 10 caracteres",
-
-                ]
-            ]
 
         ]);
         if (!$validation) {
@@ -54,8 +46,7 @@
         try {
             $data = [
                 "name" => $this->request->getPost("name"),
-                "address" => $this->request->getPost("address"),
-                "phone" => $this->request->getPost("phone"),
+                "email" => $this->request->getPost("email"),
                     ];
             $employees = new Employee();
             $employees->insert($data);
@@ -86,21 +77,14 @@
                     "max_length" => "El nombre no puede ser mayor a 30 caracteres"
                 ]
             ],
-            "address" => [
-                "rules" => "required|min_length[10]",
+            "email" => [
+                "rules" => "required|max_length[255]",
                 "errors" => [
-                    "required" => "El campo dirección es obligatorio",
-                    "min_length" => "La dirección debe tener minimo 10 caracteres"
+                    "required" => "El campo Email es obligatorio",
+                    "max_length" => "La dirección debe tener máximo 255 caracteres"
                 ]
             ],
-            "phone" => [
-                "rules" => "required|min_length[10]",
-                "errors" => [
-                    "required" => "El teléfono es obligatorio",
-                    "min_length" => "El teléfono debe tener minimo 10 caracteres",
 
-                ]
-            ]
 
         ]);
         if (!$validation) {
@@ -110,8 +94,8 @@
             $id= $this->request->getPost("id");
             $data = [
                 "name" => $this->request->getPost("name"),
-                "address" => $this->request->getPost("address"),
-                "phone" => $this->request->getPost("phone"),
+                "email" => $this->request->getPost("email"),
+                
                     ];
             $employees = new Employee();
             $employees->update($id, $data);

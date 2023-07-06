@@ -30,10 +30,13 @@
                             <?php } ?>
                             <?php if(session("errors")){?>
                                 <div class="alert alert-danger" role="alert">
-                                <?= print_r(session("errors"))?>
+                                <?php foreach(session("errors") as $errors){?>
+                                    <li><?=$errors?></li>
+                                <?php } ?>
                                 </div>
+                                <?php } ?>
                             </div>
-                            <?php } ?>
+                           
                         <div class="card-body">
                             <form action="<?= base_url("/providers")?>" method="POST">
                                 <div class="form-group">

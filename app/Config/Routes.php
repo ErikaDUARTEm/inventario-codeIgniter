@@ -34,6 +34,7 @@ $routes->set404Override();
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'AuthController::index');
 $routes->post('/auth', 'AuthController::auth');
+$routes->post("salir", "AuthController::logout");
 
 $routes->get('/tablero', 'TableroController::index');
 $routes->post('/tablero', 'TableroController::tablero');
