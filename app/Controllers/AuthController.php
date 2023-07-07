@@ -8,6 +8,12 @@ class AuthController extends BaseController
 {
     public function index()
     {
+        if(!empty($_COOKIE["email"])){
+            $data = [
+                "email"=> $_COOKIE["email"],
+                "password" => $_COOKIE["password"]
+            ];
+        }
         return view('/auth/login');
     }
     public function auth()
@@ -35,14 +41,14 @@ class AuthController extends BaseController
                 //validar con la base de datos
                 try{
                     $email = $this->request->getPost("email");
-                    $password = $this->request->getPost("password");
+                    $password = $this->request->getVar("password");
                     $employee = new Employee();
                     $user = $employee->where("email", $email)->first();
                     if(empty($user)){
                         return redirect()->back()->with("error", ["El correo y/o contraseña no es correcto"]);
                     }
                     
-                    if(password_verify("$password", $user['password'])){
+                    if(!password_verify($password, $user['password'])){
                         return  redirect()->back()->with("error", ["El correo y/o contraseña no es correcto"]);
                     }
                     session()->set([
@@ -51,6 +57,16 @@ class AuthController extends BaseController
                         "email" => $user['email'],
                         "is_logged" => true
                     ]);
+                    //remenber
+                    $remenber = $this->request->getPost("remenber");
+                    if($remenber == 1){
+                        setcookie("email", $email, time()+3600);
+                        setcookie("password", $password, time()+3600);
+                    }else{
+                        setcookie("email", $email, time()-3600);
+                        setcookie("password", $password, time()-3600);
+                    };
+
                 return redirect()->to(base_url("/tablero"));
                 }catch(\Throwable $error){
                     return redirect()->back()->with("errors", [$error->getMessage()]);

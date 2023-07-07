@@ -52,7 +52,7 @@
         }
         try {
             $password = $this->request->getPost("password");
-            $clave = password_hash("$password" , PASSWORD_DEFAULT);
+            $clave = password_hash($password , PASSWORD_DEFAULT);
 
             $data = [
                 "name" => $this->request->getPost("name"),

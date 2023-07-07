@@ -30,16 +30,16 @@
                             <div class="form-group">
                                     <input type="email" class="form-control form-control-user"
                                         id="email" name="email" aria-describedby="emailHelp"
-                                        placeholder="Ingrese su correo electronico...">
+                                        placeholder="Ingrese su correo electronico..." value="<?=(!empty($email))? $email : null?>">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                        id="password" name="password" placeholder="Ingrese la contraseña">
+                                        id="password" name="password" placeholder="Ingrese la contraseña" value="<?=(!empty($password))? $password : null?>">
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                                        <label class="custom-control-label" for="customCheck">Remember
+                                        <input type="checkbox" class="custom-control-input" id="remenber" name="remenber" value="1" <?=(!empty($email))? "checked" : null ?>>
+                                        <label class="custom-control-label" for="remenber">Remember
                                             Me</label>
                                     </div>
                                 </div>

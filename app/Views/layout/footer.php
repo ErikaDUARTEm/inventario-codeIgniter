@@ -10,7 +10,7 @@
 
     <!-- Page level plugins -->
     <script src="<?= base_url("vendor/chart.js/Chart.min.js")?>"></script>
-
+    
 </body>
 
 </html>
