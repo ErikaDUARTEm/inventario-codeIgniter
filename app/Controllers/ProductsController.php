@@ -134,7 +134,7 @@
                 "quantity" => [
                         "rules"=>"required|numeric",
                         "errors" => [
-                                    "required" => "La Existencia es obligatoria",
+                                    "required" => "La existencia es obligatoria",
                                     "numeric" => "La existencia debe ser numeros",
                                         
                                     ]     

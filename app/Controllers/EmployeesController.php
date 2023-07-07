@@ -38,17 +38,29 @@
                     "max_length" => "La dirección debe tener máximo 255 caracteres"
                 ]
             ],
+            "password" => [
+                "rules" => "required|max_length[30]",
+                "errors" => [
+                    "required" => "El campo es obligatorio",
+                    "max_length" => "El password debe tener máximo 30 caracteres"
+                ]
+            ],
 
         ]);
         if (!$validation) {
             return redirect()->back()->with("errors", $this->validator->getErrors())->withInput();
         }
         try {
+            $password = $this->request->getPost("password");
+            $clave = password_hash("$password" , PASSWORD_DEFAULT);
+
             $data = [
                 "name" => $this->request->getPost("name"),
                 "email" => $this->request->getPost("email"),
+                "password"=> $clave
                     ];
             $employees = new Employee();
+            
             $employees->insert($data);
             return redirect()->to(base_url("/employees"))->with("success", "Guardado exitosamente");
         } catch (\Throwable $error) {

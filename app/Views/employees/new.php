@@ -47,6 +47,10 @@
                                     <label for="">Email</label>
                                     <input type="text" class="form-control form-control-user" name="email" placeholder="Ingrese el email" value="<?=old("email")?>">
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Password</label>
+                                    <input type="text" class="form-control form-control-user" name="password" placeholder="Ingrese el password" value="<?=old("password")?>">
+                                </div>
                                 <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                                 </div>

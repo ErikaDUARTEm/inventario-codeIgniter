@@ -50,6 +50,7 @@
                                             <td><?= $row["id"] ?></td>
                                             <td><?= $row["name"] ?></td>
                                             <td><?= $row["email"] ?></td>
+                                            <td><?= $row["rol"] ?></td>
                                             <td>
                                                 <a href="<?= base_url("/employees/edit/{$row["id"]}")?>" class="btn btn-primary">Editar</a>
                                             </td>
