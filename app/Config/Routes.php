@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Controllers\CustomersController;
+use App\Controllers\SalesController;
 use App\Models\Product;
 
 // Create a new instance of our RouteCollection class.
@@ -50,6 +52,7 @@ $routes->group("", ["filter" => "auth"], function($routes){
     $routes->get('/products/edit/(:num)', 'ProductsController::edit/$1');
     $routes->put("/products", "ProductsController::update");
     $routes->delete("/products/(:num)", "ProductsController::delete/$1");
+    $routes->get("/search/product", "ProductsController::search");
     
     $routes->get('/providers', 'ProvidersController::index');
     $routes->get('/providers/new', 'ProvidersController::create');
@@ -73,8 +76,10 @@ $routes->group("", ["filter" => "auth"], function($routes){
     $routes->put("/customers", "CustomersController::update");
     $routes->delete("/customers/(:num)", "CustomersController::delete/$1");
     
-    $routes->get("/venta", "SalesController::sales");
-
+    $routes->get("/sale", "SalesController::index");
+    $routes->post("search/product", "SalesController::index");
+    
+    $routes->get("/search/client", "CustomersController::search");
 
 });
 

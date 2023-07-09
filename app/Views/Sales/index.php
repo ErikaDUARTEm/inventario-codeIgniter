@@ -21,12 +21,11 @@
                         <div class="card-header d-sm-flex justify-content-between mb-4">
                             <h6 class="m-0 font-weight-bold text-primary"><?= $title ?></h6>
                             <!--aqui va el boton -->
-                            <a href="<?= base_url("/products/new") ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Nuevo Producto</a>
                         </div>
                         <div class="card-body ">
-                            <?php if (session("success")) { ?>
-                                <div class="alert alert-success" role="alert">
-                                    <?= session("success") ?>
+                            <?php if (!empty($mensaje)) { ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?= $mensaje ?>
                                 </div>
                             <?php } ?>
                             <?php if (session("error")) { ?>
@@ -34,15 +33,76 @@
                                     <?= session("error") ?>
                                 </div>
                             <?php } ?>
-                            <h2>Seleccionar al cliente</h2>
-                            <h2>Agregar los productos</h2>
-                            <h2>Realizar la venta</h2>
-                            </h2>
+                            <div class="form-group">
+                                <label for="customer">Seleccione al cliente</label>
+                                <select class="js-example-basic-single form-control" name="customer" id="selectCustomer"></select>
+                            </div>
+                            <hr> 
+                            <form action="<?= base_url("/search/product")?>" method="POST">
+                            <div class="row justify-content-between ">
+                                <div class="col-12 col-md-4 justify-content-center align-self-center">
+                                    <div class="form-group">
+                                        <label for="product">Seleccione el Producto</label>
+                                        <select class="js-example-basic-single form-control" name="product" id="selectProduct"></select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3 justify-content-center align-self-center">
+                                    <div class="form-group">
+                                        <label for="quantity">Indique la cantidad</label>
+                                        <input type="number" class="form-control" name="quantity">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3 justify-content-center align-self-center">
+                                    <button class='btn btn-primary'>Agregar Producto</button>
+                                </div>
+                            </div>
+                            </form>
+                            
+                        </div>
+
+                        <div class="row form-group card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Descripción</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Importe</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach(session("carrito") as $row):
+                                        $num++;
+                                    ?>
+                                    <tr>
+                                        <td><?=$num?></td>
+                                        <td><?= $row["title"]?></td>
+                                        <td><?= $row["quantity"]?></td>
+                                        <td><?= $row["price"]?></td>
+                                        <td><?= $row["quantity"] * $row["price"]?></td>
+                                    </tr>
+                                   <?php endforeach;?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td colspan="2" class="text-right">
+                                            <button class="btn btn-danger">Cancelar venta</button>
+                                            <button class="btn btn-primary">Generar Venta</button>
+                                        </td>
+                                    </tr>
+                                    
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<?= $this->include("layout/footer.php") ?>
+   
+    <script src="<?= base_url("assets/js/sales.js")?>"></script>
+    <?= $this->include("layout/footer.php") ?>

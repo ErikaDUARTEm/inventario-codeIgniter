@@ -172,4 +172,12 @@
             }
            
         }
+        public function search(){
+            $search = $_GET["searchTerm"];
+            $products = new Product();
+            $products->select("code, title");
+            $products->like("title", $search, "both");
+            echo json_encode($products->findAll());
+            return;
+        }
     }

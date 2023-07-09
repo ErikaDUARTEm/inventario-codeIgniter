@@ -22,7 +22,7 @@
 <!-- Divider -->
 <hr class="sidebar-divider">
 <li class="nav-item active">
-    <a class="nav-link" href="<?=base_url("/venta")?>">
+    <a class="nav-link" href="<?=base_url("/sale")?>">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Vender</span></a>
 </li>

@@ -8,13 +8,14 @@ class AuthController extends BaseController
 {
     public function index()
     {
+        $data = [];
         if(!empty($_COOKIE["email"])){
             $data = [
                 "email"=> $_COOKIE["email"],
                 "password" => $_COOKIE["password"]
             ];
         }
-        return view('/auth/login');
+        return view('/auth/login', $data);
     }
     public function auth()
     {
@@ -51,13 +52,7 @@ class AuthController extends BaseController
                     if(!password_verify($password, $user['password'])){
                         return  redirect()->back()->with("error", ["El correo y/o contraseña no es correcto"]);
                     }
-                    session()->set([
-                        "user_id" => $user['id'],
-                        "name" => $user['name'],
-                        "email" => $user['email'],
-                        "is_logged" => true
-                    ]);
-                    //remenber
+                     //remenber
                     $remenber = $this->request->getPost("remenber");
                     if($remenber == 1){
                         setcookie("email", $email, time()+3600);
@@ -66,6 +61,14 @@ class AuthController extends BaseController
                         setcookie("email", $email, time()-3600);
                         setcookie("password", $password, time()-3600);
                     };
+                    session()->set([
+                        "user_id" => $user['id'],
+                        "name" => $user['name'],
+                        "email" => $user['email'],
+                        "is_logged" => true
+                    ]);
+                   
+                    
 
                 return redirect()->to(base_url("/tablero"));
                 }catch(\Throwable $error){
