@@ -134,7 +134,7 @@
                 "quantity" => [
                         "rules"=>"required|numeric",
                         "errors" => [
-                                    "required" => "La Existencia es obligatoria",
+                                    "required" => "La existencia es obligatoria",
                                     "numeric" => "La existencia debe ser numeros",
                                         
                                     ]     
@@ -171,5 +171,13 @@
                 return redirect()->back()->with("error", $error->getMessage())->withInput();
             }
            
+        }
+        public function search(){
+            $search = $_GET["searchTerm"];
+            $products = new Product();
+            $products->select("code, title");
+            $products->like("title", $search, "both");
+            echo json_encode($products->findAll());
+            return;
         }
     }

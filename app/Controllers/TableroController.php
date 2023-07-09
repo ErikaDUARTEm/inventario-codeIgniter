@@ -8,6 +8,6 @@
             return view("/tablero");
         }
         public function tablero(){
-            return redirect()->to(base_url("/tablero"))->with("success", "Haz iniciado sesión");
-        }
+             return redirect()->to(base_url("/tablero"));
+         }
     }

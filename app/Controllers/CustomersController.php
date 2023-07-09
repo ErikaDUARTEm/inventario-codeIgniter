@@ -130,4 +130,12 @@
         }
        
     }
+    public function search(){
+        $buscador = $_GET["searchTerm"];
+        $customer = new Customer();
+        $customer->select("id, name");
+        $customer->like("name", $buscador, "both");
+        echo json_encode($customer->findAll());
+        return;
+    }
     }

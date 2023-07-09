@@ -19,46 +19,33 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Bienvenid@!</h1>
                             </div>
-                            <?php if(session("error")){?>
-                            <div class="alert alert-warning" role="alert">
-                            <?= session("error")?>
-                            </div>
-                            <?php } ?>
-                            <form class="user" action="<?=base_url("/tablero")?>" method="POST">
+                            <?php if(session("errors")){?>
+                                <div class="alert alert-danger" role="alert">
+                                <?php foreach(session("errors") as $errors){?>
+                                    <li><?=$errors?></li>
+                                <?php } ?>
+                                </div>
+                                <?php } ?>
+                            <form class="user" action="<?=base_url("/auth")?>" method="POST">
                             <div class="form-group">
                                     <input type="email" class="form-control form-control-user"
-                                        id="exampleInputEmail" name="email" aria-describedby="emailHelp"
-                                        placeholder="Ingrese su correo electronico...">
+                                        id="email" name="email" aria-describedby="emailHelp"
+                                        placeholder="Ingrese su correo electronico..." value="<?=(!empty($email))? $email : null?>">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" name="password" placeholder="Ingrese la contraseña">
+                                        id="password" name="password" placeholder="Ingrese la contraseña" value="<?=(!empty($password))? $password : null?>">
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                                        <label class="custom-control-label" for="customCheck">Remember
+                                        <input type="checkbox" class="custom-control-input" id="remenber" name="remenber" value="1" <?=(!empty($email))? "checked" : null ?>>
+                                        <label class="custom-control-label" for="remenber">Remember
                                             Me</label>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Iniciar sesión
                                 </button>
-                                <!-- <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Login with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                </a>
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div> -->
-                            <!-- <div class="text-center">
-                                <a class="small" href="register.html">Create an Account!</a>
-                            </div> -->
                         </div>
                     </div>
                 </div>

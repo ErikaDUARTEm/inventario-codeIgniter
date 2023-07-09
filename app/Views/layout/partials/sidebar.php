@@ -21,7 +21,13 @@
 
 <!-- Divider -->
 <hr class="sidebar-divider">
-
+<li class="nav-item active">
+    <a class="nav-link" href="<?=base_url("/sale")?>">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Vender</span></a>
+</li>
+<!-- Divider -->
+<hr class="sidebar-divider">
 <!-- Heading -->
 <div class="sidebar-heading">
     Interface
