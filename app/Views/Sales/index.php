@@ -38,7 +38,7 @@
                                 <select class="js-example-basic-single form-control" name="customer" id="selectCustomer"></select>
                             </div>
                             <hr> 
-                            <form action="<?= base_url("/search/product")?>" method="POST">
+                            <form action="<?= base_url("/sale")?>" method="POST">
                             <div class="row justify-content-between ">
                                 <div class="col-12 col-md-4 justify-content-center align-self-center">
                                     <div class="form-group">
@@ -72,8 +72,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach(session("carrito") as $row):
+                                    <?php foreach($carrito as $row):
                                         $num++;
+                                        $total += ($row["quantity"] * $row["price"]);
                                     ?>
                                     <tr>
                                         <td><?=$num?></td>
@@ -89,12 +90,15 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
+                                        <td><strong>Total  =></strong></td>
+                                        <td><?= $total?></td>
+                                    </tr>
+                                    <tr>
                                         <td colspan="2" class="text-right">
-                                            <button class="btn btn-danger">Cancelar venta</button>
+                                            <a href="<?= base_url('/sales/cancel')?>" class="btn btn-danger">Cancelar venta</a>
                                             <button class="btn btn-primary">Generar Venta</button>
                                         </td>
                                     </tr>
-                                    
                                 </tfoot>
                             </table>
                         </div>

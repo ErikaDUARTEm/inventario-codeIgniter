@@ -77,8 +77,9 @@ $routes->group("", ["filter" => "auth"], function($routes){
     $routes->delete("/customers/(:num)", "CustomersController::delete/$1");
     
     $routes->get("/sale", "SalesController::index");
-    $routes->post("search/product", "SalesController::index");
-    
+    $routes->post("/sale", "SalesController::index");
+    $routes->get("/sales/cancel", "SalesController::cancel"); 
+
     $routes->get("/search/client", "CustomersController::search");
 
 });
