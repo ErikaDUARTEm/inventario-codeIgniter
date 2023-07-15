@@ -79,6 +79,7 @@ $routes->group("", ["filter" => "auth"], function($routes){
     $routes->get("/sale", "SalesController::index");
     $routes->post("/sale", "SalesController::index");
     $routes->get("/sales/cancel", "SalesController::cancel"); 
+    $routes->post("/sales/confirm", "SalesController::save"); 
 
     $routes->get("/search/client", "CustomersController::search");
 

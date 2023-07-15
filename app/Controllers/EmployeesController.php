@@ -57,7 +57,8 @@
             $data = [
                 "name" => $this->request->getPost("name"),
                 "email" => $this->request->getPost("email"),
-                "password"=> $clave
+                "password"=> $clave,
+                "created_at" => date("Y-m-d h:i:s")
                     ];
             $employees = new Employee();
             

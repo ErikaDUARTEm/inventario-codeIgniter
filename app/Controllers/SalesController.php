@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Product;
+use App\Models\Sale;
+use App\Models\SaleDetail;
+use Dompdf\Dompdf;
 
 class SalesController extends BaseController
 {
@@ -83,5 +86,59 @@ class SalesController extends BaseController
     public function cancel(){
         unset($_SESSION["carrito"]);
         return redirect()->back();
+    }
+    public function save()
+    {
+        if(empty($this->request->getPOST("customer_id") || empty($this->request->getPOST("total")))){
+            return redirect()->back()->with("error", "Datos incompletos, no se puede realizar la venta. Intente de nuevo");
+        }
+        try{
+            $data = [
+                "customer_id" => $this->request->getPOST("customer_id"),
+                "employee_id" => session("user_id"),
+                "total"=> $this->request->getPOST("total"),
+                "created_at" => date("Y-m-d h:i:s")
+            ];
+            $sales = new Sale();
+            $saleId = $sales->insert($data); //se inserta la venta general
+            foreach(session("carrito") as $row){ //se recorren los detalles de la venta
+                $saleDetails = new SaleDetail();
+                $products= new Product();
+                $data = [
+                    "sale_id" => $saleId,
+                    "product_id"=>$row["id"],
+                    "quantity"=>$row["quantity"],
+                    "price"=>$row["price"]
+                ];
+                $saleDetails->insert($data); //insertamos detalles de la venta
+                //restamos existencias
+                $product = $products->find($row["id"]);
+                $newQuantity = $product["quantity"] - $row["quantity"];
+                $products->update($row["id"], ["quantity"=> $newQuantity]);
+            }
+            //borrar el carrito
+            session()->remove("carrito");
+            return redirect()->to(base_url("/sale"))->with("sucess", "Venta actualizada correctamente");
+
+            }catch(\Throwable $th){
+                return redirect()->back()->with("error", $th->getMessage());
+    
+            };
+    
+            // guardar factura en pdf
+            // view("sales/factura", ["carrito"=> session("carrito")]);
+            
+            // $dompdf = new Dompdf();
+            // $dompdf->loadHtml('hello world');
+    
+            // (Optional) Setup the paper size and orientation
+            // $dompdf->setPaper('letter', 'landscape');
+    
+            // // Render the HTML as PDF
+            // $dompdf->render();
+    
+            // // Output the generated PDF to Browser
+            // $dompdf->stream();
+       
     }
 }

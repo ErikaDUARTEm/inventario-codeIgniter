@@ -11,7 +11,8 @@
             return view("products/index",
             [
                 "title"=> "Listado de Productos",
-                "products" => $data
+                "products" => $data,
+                "created_at" => date("Y-m-d h:i:s")
                 
             ]
         );

@@ -8,27 +8,26 @@ class Sales extends Migration
 {
     public function up()
     {
+        $this->db->disableForeignKeyChecks();
         $this->forge->addField([
-            // ...
-            'product_id' => [
+            'id' => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,
-            ],
-            'quantity' => [
-                'type' => 'DECIMAL',
-                'constraint' => '12,2',
-            ],
-            'price' => [
-                'type' => 'INT',
+                'auto_increment'=> true
             ],
             'customer_id' => [
                 'type' => 'INT',
+                'constraint' => 11,
                 'unsigned' => true,
             ],
             'employee_id' => [
                 'type' => 'INT',
+                'constraint' => 11,
                 'unsigned' => true,
+            ],
+            'total' => [
+                'Type' => 'INT',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -36,20 +35,20 @@ class Sales extends Migration
         ]);
 
         // Agregar las claves foráneas
-        $this->forge->addForeignKey('product_id', 'products', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addKey('id', true);
+        $this->forge->addKey('customer_id', false);
+        $this->forge->addKey('employee_id', false);
+
         $this->forge->addForeignKey('customer_id', 'customers', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('employee_id', 'employees', 'id', 'CASCADE', 'CASCADE');
 
-        $this->forge->addKey('id', true);
+        
         $this->forge->createTable('sales');
+        $this->db->enableForeignKeyChecks();
     }
 
         public function down()
-    {
-        $this->forge->dropForeignKey('sales', 'sales_product_id_foreign');
-        $this->forge->dropForeignKey('sales', 'sales_customer_id_foreign');
-        $this->forge->dropForeignKey('sales', 'sales_employee_id_foreign');
-    
+    {    
         // Eliminar la tabla "sales"
         $this->forge->dropTable('sales');
     }
