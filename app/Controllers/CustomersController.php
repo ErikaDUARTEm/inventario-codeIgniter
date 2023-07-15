@@ -56,6 +56,7 @@
                 "name" => $this->request->getPost("name"),
                 "address" => $this->request->getPost("address"),
                 "phone" => $this->request->getPost("phone"),
+                "created_at" => date("Y-m-d h:i:s")
                     ];
             $customers = new Customer();
             $customers->insert($data);

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', ()=>{
+    //buscador de clientes
     $('#selectCustomer').select2({
         ajax: {
             url: '/inventario/public/search/client',
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
           }
     });
+    //buscador de productos
     $('#selectProduct').select2({
         ajax: {
             url: '/inventario/public/search/product',
@@ -42,3 +44,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
           }
     });
 })
+
+function selectCustomer(){
+    const selectCustomer = document.querySelector("#selectCustomer");
+    const id =  selectCustomer.options[selectCustomer.selectedIndex].value;
+    document.querySelector("#customer_id").value = id;
+   
+}

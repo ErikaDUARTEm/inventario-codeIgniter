@@ -35,7 +35,7 @@
                             <?php } ?>
                             <div class="form-group">
                                 <label for="customer">Seleccione al cliente</label>
-                                <select class="js-example-basic-single form-control" name="customer" id="selectCustomer"></select>
+                                <select class="js-example-basic-single form-control" name="customer" id="selectCustomer" onchange="selectCustomer()"></select>
                             </div>
                             <hr> 
                             <form action="<?= base_url("/sale")?>" method="POST">
@@ -78,7 +78,7 @@
                                     ?>
                                     <tr>
                                         <td><?=$num?></td>
-                                        <td><?= $row["title"]?></td>
+                                        <td><?= $row["description"]?></td>
                                         <td><?= $row["quantity"]?></td>
                                         <td><?= $row["price"]?></td>
                                         <td><?= $row["quantity"] * $row["price"]?></td>
@@ -94,9 +94,16 @@
                                         <td><?= $total?></td>
                                     </tr>
                                     <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td colspan="2" class="text-right">
                                             <a href="<?= base_url('/sales/cancel')?>" class="btn btn-danger">Cancelar venta</a>
-                                            <button class="btn btn-primary">Generar Venta</button>
+                                            <form action="<?= base_url("/sales/confirm")?>" method="POST">
+                                                <input type="hidden" name="customer_id" id="customer_id">
+                                                <input type="hidden" name="total" value="<?= $total?>">
+                                                <button type="submit" class="btn btn-primary">Generar Venta</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 </tfoot>
