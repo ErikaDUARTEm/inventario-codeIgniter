@@ -78,7 +78,7 @@
                                     ?>
                                     <tr>
                                         <td><?=$num?></td>
-                                        <td><?= $row["title"]?></td>
+                                        <td><?= $row["description"]?></td>
                                         <td><?= $row["quantity"]?></td>
                                         <td><?= $row["price"]?></td>
                                         <td><?= $row["quantity"] * $row["price"]?></td>

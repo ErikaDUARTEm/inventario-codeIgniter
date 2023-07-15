@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Sale;
 use App\Models\SaleDetail;
@@ -58,7 +59,7 @@ class SalesController extends BaseController
                     $detail = [
                         "id"=> $product["id"],
                         "code" => $product["code"],
-                        "title" => $product["title"],
+                        "description" => $product["title"],
                         "price" => $product["price"],
                         "quantity" => $quantity
                     ];
@@ -88,11 +89,13 @@ class SalesController extends BaseController
         return redirect()->back();
     }
     public function save()
-    {
+    {  
         if(empty($this->request->getPOST("customer_id") || empty($this->request->getPOST("total")))){
             return redirect()->back()->with("error", "Datos incompletos, no se puede realizar la venta. Intente de nuevo");
         }
         try{
+            $customer = new Customer();
+            $cliente = $customer->find($this->request->getPOST("customer_id"));
             $data = [
                 "customer_id" => $this->request->getPOST("customer_id"),
                 "employee_id" => session("user_id"),
@@ -116,6 +119,22 @@ class SalesController extends BaseController
                 $newQuantity = $product["quantity"] - $row["quantity"];
                 $products->update($row["id"], ["quantity"=> $newQuantity]);
             }
+            // guardar factura en pdf
+            
+            $dompdf = new Dompdf();
+            $dompdf->loadHtml( view("sales/factura", [
+                "cliente"=>$cliente["name"],
+                "carrito"=> session("carrito")]));
+    
+            // (Optional) Setup the paper size and orientation
+            $dompdf->setPaper('letter', 'landscape');
+    
+            // Render the HTML as PDF
+            $dompdf->render();
+    
+            // Output the generated PDF to Browser
+            $dompdf->stream();
+
             //borrar el carrito
             session()->remove("carrito");
             return redirect()->to(base_url("/sale"))->with("sucess", "Venta actualizada correctamente");
@@ -125,20 +144,6 @@ class SalesController extends BaseController
     
             };
     
-            // guardar factura en pdf
-            // view("sales/factura", ["carrito"=> session("carrito")]);
-            
-            // $dompdf = new Dompdf();
-            // $dompdf->loadHtml('hello world');
-    
-            // (Optional) Setup the paper size and orientation
-            // $dompdf->setPaper('letter', 'landscape');
-    
-            // // Render the HTML as PDF
-            // $dompdf->render();
-    
-            // // Output the generated PDF to Browser
-            // $dompdf->stream();
-       
+           
     }
 }
