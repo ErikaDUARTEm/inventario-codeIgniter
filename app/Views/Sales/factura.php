@@ -21,7 +21,17 @@
     </style>
 </head>
 <body>
+    <table width="100%">
+        <tr>
+            <td>Nombre de la empresa:<br>
+                Domicilio:<br>
+                Teléfono:
+            </td>
+        </tr>
+    </table>
     <p>Cliente: <?=$cliente?></p>
+    <p>Fecha: <?= $fecha?></p>
+    <h2>Número de factura: <?=$factura?></h2>
     <table width="100%">
         <thead>
             <tr>
@@ -45,7 +55,12 @@
         </tbody>
         <tfoot>
             <tr>
-                <td></td>
+                <th></th>
+                <th></th>
+                <th class="text-end">Total:</th>
+                <th class="text-end"><?= number_format($total, 2)?></th>
+
+
             </tr>
         </tfoot>
     </table>
