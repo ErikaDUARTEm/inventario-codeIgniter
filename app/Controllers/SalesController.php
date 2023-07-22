@@ -11,6 +11,7 @@ use Dompdf\Dompdf;
 
 class SalesController extends BaseController
 {
+    public $ventaPdf = [];
     public function __construct(){
         session();
     }
@@ -124,6 +125,9 @@ class SalesController extends BaseController
             $dompdf = new Dompdf();
             $dompdf->loadHtml( view("sales/factura", [
                 "cliente"=>$cliente["name"],
+                "total"=>$this->request->getPost("total"),
+                "factura"=>$saleId,
+                "fecha"=> date("Y, m, d"),
                 "carrito"=> session("carrito")]));
     
             // (Optional) Setup the paper size and orientation
@@ -142,8 +146,61 @@ class SalesController extends BaseController
             }catch(\Throwable $th){
                 return redirect()->back()->with("error", $th->getMessage());
     
-            };
-    
+            };  
+    }
+    public function report(){
+        $ventas= [];
+        if(!empty($this->request->getPost("date"))){
+            //Buscar venta por fecha
+            $date = $this->request->getPost("date");
+            $details = new SaleDetail();
+            $details->select("salesdetails.product_id, salesdetails.quantity, salesdetails.price, sales.*,
+            products.title, customers.name");
+            $details->join("sales", "salesdetails.sale_id = sales.id");
+            $details->join("products", "salesdetails.product_id = products.id");
+            $details->join("customers", "sales.customer_id = customers.id");
+            $details->where("DATE(sales.created_at)", $date);
+            $ventas = $details->findAll();
+            session()->set(["pdfVentas" => $ventas]);
+        }
+        $data = [
+            "title"=>"Reporte de ventas",
+            "ventas"=> $ventas
+        ];
+        return view("sales/report", $data);
+    }
+
+    public function pdf(){
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml( view("sales/pdf", [
+            "ventas"=> session("pdfVentas"),
            
+        ]));
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('letter', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream();
+        
+    }
+    public function product(){
+        $select = $this->request->getPost("stockProduct");
+        
+        $reportProduct = new Product();
+        
+        if($select === "agotados"){
+            
+            $reportProduct->select("products.code, products.title, products.quantity");
+            $reportProduct->where("products.quantity", $select);
+        }
+        
+        return view("sales/products", [
+            "title"=> "Reporte de productos",
+            
+        ]);
     }
 }

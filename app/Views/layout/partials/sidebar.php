@@ -99,7 +99,22 @@
         </div>
     </div>
 </li>
-
+<hr class="sidebar-divider d-none d-md-block">
+<!-- Nav Item - Utilities Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link collapsed" href="/providers" data-toggle="collapse" data-target="#collapseU"
+        aria-expanded="true" aria-controls="collapseU">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Reportes</span>
+    </a>
+    <div id="collapseU" class="collapse" aria-labelledby="headingUtilities"
+        data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="<?=base_url("/sale/report")?>">Ventas</a>
+            <a class="collapse-item" href="<?=base_url("/sale/reportProducts")?>">Productos</a>
+        </div>
+    </div>
+</li>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
